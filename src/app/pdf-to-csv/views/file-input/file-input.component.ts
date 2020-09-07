@@ -18,15 +18,27 @@ export class FileInputComponent implements OnInit {
   }
 
   saveFile(event) {
-  //  console.log(event.target.files[0])
-    this.file = event.target.files[0];
+    //  console.log(event.target.files[0])
+    let pdfFile = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(pdfFile);
+    reader.onload = () => {
+      this.file = {
+        filename: pdfFile.name,
+        filetype: pdfFile.type,
+        value: reader.result
+      }
+    }
+
+
   }
 
   onSubmit() {
-    // this.tableExtractionService.fileUpload( this.file, this.page_no, this.double_page, this.next_page ).subscribe((resp: any) => {
-    //   console.log(resp)
+    //  this.tableExtractionService.fileUpload( this.file, this.page_no, this.double_page, this.next_page ).subscribe((resp: any) => {
+    //   console.log(resp) })
+
+    console.log(this.file)
     // }
-    console.log(this.file, this.page_no, this.double_page, this.next_page)
-    
+    // console.log(this.file, this.page_no, this.double_page, this.next_page)  
   }
 }
