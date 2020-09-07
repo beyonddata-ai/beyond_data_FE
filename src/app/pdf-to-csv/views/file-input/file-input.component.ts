@@ -29,15 +29,12 @@ export class FileInputComponent implements OnInit {
         value: reader.result
       }
     }
-
-
   }
 
   onSubmit() {
-    //  this.tableExtractionService.fileUpload( this.file, this.page_no, this.double_page, this.next_page ).subscribe((resp: any) => {
-    //   console.log(resp) })
-
-    console.log(this.file)
+     this.tableExtractionService.fileUpload( this.file, this.page_no, this.double_page, this.next_page ).subscribe((resp: any) => {
+      console.log(resp) })
+    // console.log(this.file)
     // }
     // console.log(this.file, this.page_no, this.double_page, this.next_page)  
   }
