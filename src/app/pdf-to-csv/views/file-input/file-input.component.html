@@ -1,0 +1,18 @@
+<mat-card class="mat-elevation-z8">
+    <mat-card-title>Upload PDF</mat-card-title>
+    <br>
+    <mat-card-content>
+        <input style="display: block; margin-top: 30px;" type="file" (change)="saveFile($event)"> 
+        <mat-form-field style="display: block; margin-top: 30px; width: 50%;" appearance="outline">
+            <mat-label>Enter page number containing financial statements</mat-label>
+            <input matInput type="number" [(ngModel)]="pageNumber">
+        </mat-form-field>
+        <section>
+            <mat-checkbox class="checkbox" [(ngModel)]="userInput.doublePage">Double Page {{userInput.doublePage}}</mat-checkbox>
+            <mat-checkbox class="checkbox" [(ngModel)]="userInput.nextPage">Next page {{userInput.nextPage}}</mat-checkbox>
+        </section>
+        <button mat-raised-button (click)="upload()">
+            UPLOAD
+        </button>
+    </mat-card-content>
+</mat-card>

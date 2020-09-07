@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Gayathri:wght@100&display=swap');
+mat-card {
+    width: 40%;
+    margin: 50px 600px;
+    background-color: white;
+    color: black;  
+    height: 350px; 
+}
+
+mat-card-title {
+    color: #1f1d1d ;
+    font-weight: 700; 
+    font-size: x-large;
+}
+
+mat-card-content {
+    margin-left: 230px;
+}
+
+.checkbox {
+
+    display: block;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #1f1d1d ;
+    color: white;
+}

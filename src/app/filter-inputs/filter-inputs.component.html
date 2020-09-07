@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-content>
+        <div class="container">
+            <mat-form-field>
+                <mat-label>Select Sector</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let sector of data.sector" (click)="selectCompany(sector)" value="{{sector}}">
+                        {{sector.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Select Company</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let data of selectedSectorCompanies" value="data"
+                        (click)="selected_Company(data)">{{data}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Select Narrative Type</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let narrative of data.narrativeType" (click)="selectNarrativeType(narrative)"
+                        value="narrative">{{narrative}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Select Narrative Section</mat-label>
+                <mat-select>
+
+                    <mat-option *ngFor="let section of sections" value="section" (click)="selectSection(section)">
+                        {{section}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="Results()">Search</button>
+            <div style="display: block; margin: 40px;">
+                <span>{{searchResults}}</span>
+            </div>
+        </div>
+    </mat-card-content>
+
+</mat-card>

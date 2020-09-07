@@ -1,0 +1,12 @@
+.container{
+    background-image: url("../assets/Flat-Mountains-new.svg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+  }

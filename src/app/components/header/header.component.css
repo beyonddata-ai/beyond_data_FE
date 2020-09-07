@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Gayathri:wght@100&display=swap');
+
+.title {
+    font-weight: 800; 
+    font-size: xx-large;
+    font-family: 'Gayathri', sans-serif;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+
+
+mat-toolbar-row {
+    background-color:#1f1d1d;
+    color: white;
+    height: 60px;
+
+}
