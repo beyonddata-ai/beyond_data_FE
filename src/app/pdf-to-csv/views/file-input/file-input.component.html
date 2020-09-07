@@ -2,17 +2,19 @@
     <mat-card-title>Upload PDF</mat-card-title>
     <br>
     <mat-card-content>
-        <input style="display: block; margin-top: 30px;" type="file" (change)="saveFile($event)"> 
+        <form (ngSubmit)="onSubmit()">
+        <input style="display: block; margin-top: 30px;" type="file" name="file" (change)="saveFile($event)"> 
         <mat-form-field style="display: block; margin-top: 30px; width: 50%;" appearance="outline">
             <mat-label>Enter page number containing financial statements</mat-label>
-            <input matInput type="number" [(ngModel)]="pageNumber">
+            <input matInput type="number" name="page_no" [(ngModel)]="page_no">
         </mat-form-field>
         <section>
-            <mat-checkbox class="checkbox" [(ngModel)]="userInput.doublePage">Double Page {{userInput.doublePage}}</mat-checkbox>
-            <mat-checkbox class="checkbox" [(ngModel)]="userInput.nextPage">Next page {{userInput.nextPage}}</mat-checkbox>
+            <mat-checkbox class="checkbox" name="double_page" [(ngModel)]="double_page">Double Page {{double_page}}</mat-checkbox>
+            <mat-checkbox class="checkbox" name="next_page" [(ngModel)]="next_page">Next page {{next_page}}</mat-checkbox>
         </section>
-        <button mat-raised-button (click)="upload()">
+        <button mat-raised-button type="submit">
             UPLOAD
         </button>
+    </form>
     </mat-card-content>
 </mat-card>

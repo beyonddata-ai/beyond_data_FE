@@ -18,7 +18,7 @@ export class TableExtractionService {
 
   fileUpload(file, page_no, double_page, next_page): Observable<any> {
     //const url = `${this.fileUploadUrl}?file=${file}&page_no=${pageNo}&double_page=${doublePage}&next_page=${nextPage}`;
-   return this.http.post(this.fileUploadUrl, { file, page_no, double_page, next_page })
+    return this.http.post(this.fileUploadUrl, {file, page_no, double_page, next_page})
   }
 
 }

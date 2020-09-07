@@ -7,20 +7,10 @@ import { TableExtractionService } from 'src/app/services/table-extraction.servic
   styleUrls: ['./file-input.component.css']
 })
 export class FileInputComponent implements OnInit {
- 
-  userInput = {
-    file: '',
-    
-    doublePage: false,
-    nextPage: false,
-  }
-
-  pageNumber: number;
- 
-  // doublePage = false
-  // nextPage = false;
-  // file;
-  // PageNumber;
+  double_page = false
+  next_page = false;
+  file;
+  page_no;
 
   constructor(private tableExtractionService: TableExtractionService) { }
 
@@ -28,15 +18,15 @@ export class FileInputComponent implements OnInit {
   }
 
   saveFile(event) {
-    console.log(event.target.files[0])
-    this.userInput.file = event.target.files[0];
-   
+  //  console.log(event.target.files[0])
+    this.file = event.target.files[0];
   }
 
-  upload () {
-    this.tableExtractionService.fileUpload(this.userInput.file, this.pageNumber, this.userInput.doublePage, this.userInput.nextPage).subscribe( (resp:any)=> {
-      console.log(resp)
-    }
-    )
+  onSubmit() {
+    // this.tableExtractionService.fileUpload( this.file, this.page_no, this.double_page, this.next_page ).subscribe((resp: any) => {
+    //   console.log(resp)
+    // }
+    console.log(this.file, this.page_no, this.double_page, this.next_page)
+    
   }
 }
