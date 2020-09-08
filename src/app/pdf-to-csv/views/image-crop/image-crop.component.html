@@ -2,15 +2,15 @@
     <div class="crop">
         <mat-grid-list cols="2" rowHeight="100%">
             <mat-grid-tile>
-                <image-cropper [imageBase64]="image1" [maintainAspectRatio]="false"
+                <image-cropper [imageBase64]="image_1" [maintainAspectRatio]="false"
                     [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256"
                     [cropperMinWidth]="128" [onlyScaleDown]="false" [roundCropper]="false" [alignImage]="'left'"
                     [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="image1Cropped($event)"
                     (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
             </mat-grid-tile>
             <mat-grid-tile>
-                <div class="imageCropperContainer" *ngIf="image2" style="display: flex;">
-                    <image-cropper [imageBase64]="image2" [maintainAspectRatio]="false"
+                <div class="imageCropperContainer" *ngIf="image_2" style="display: flex;">
+                    <image-cropper [imageBase64]="image_2" [maintainAspectRatio]="false"
                         [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3"
                         [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="false" [roundCropper]="false"
                         [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png"

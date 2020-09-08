@@ -9,10 +9,10 @@ import { TableExtractionService } from 'src/app/services/table-extraction.servic
 })
 export class ImageCropComponent implements OnInit {
   images = [];
-  image1;
-  image2;
-  image2cropped: string;
-  image1cropped: string;
+  image_1;
+  image_2;
+  image2: string;
+  image1: string;
 
   imageChangedEvent: any = '';
   croppedImages: any = []
@@ -29,13 +29,13 @@ export class ImageCropComponent implements OnInit {
   }
 
   image1Cropped(event: ImageCroppedEvent) {
-      this.image1cropped = event.base64;
-      console.log(this.image1cropped);
+      this.image1 = event.base64;
+      console.log(this.image1);
   }
 
   image2Cropped(event: ImageCroppedEvent) {
-    this.image2cropped = event.base64;
-    console.log(this.image2cropped);
+    this.image2 = event.base64;
+    console.log(this.image2);
   }
 
 
@@ -58,16 +58,16 @@ export class ImageCropComponent implements OnInit {
     //   this.images.push("data:image/jpeg;base64,"+image);
     // }
     if(base64Images.length == 1) {
-      this.image1 = "data:image/jpeg;base64,"+base64Images[0];
+      this.image_1 = "data:image/jpeg;base64,"+base64Images[0];
     } else if(base64Images.length == 2) {
-      this.image1 = "data:image/jpeg;base64,"+base64Images[0];
-      this.image2 = "data:image/jpeg;base64,"+base64Images[1];
+      this.image_1 = "data:image/jpeg;base64,"+base64Images[0];
+      this.image_2 = "data:image/jpeg;base64,"+base64Images[1];
     }
   }
   
 onCropped() {
-    if(this.image2cropped) {
-      this.tableExtractionService.doubleImageCrop(this.image1cropped, this.image2cropped).subscribe((resp:any)=>{
+    if(this.image2) {
+      this.tableExtractionService.doubleImageCrop(this.image1, this.image2).subscribe((resp:any)=>{
 
       })
       console.log( "1")
