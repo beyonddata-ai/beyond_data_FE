@@ -15,6 +15,7 @@
 
 .imageCropperContainer > image-cropper {
     height: 590px;
+    width: 100%;
 }
 
 button {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableExtractionService } from 'src/app/services/table-extraction.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-file-input',
@@ -12,7 +13,7 @@ export class FileInputComponent implements OnInit {
   file;
   page_no;
 
-  constructor(private tableExtractionService: TableExtractionService) { }
+  constructor(private tableExtractionService: TableExtractionService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -33,8 +34,9 @@ export class FileInputComponent implements OnInit {
 
   onSubmit() {
      this.tableExtractionService.fileUpload( this.file, this.page_no, this.double_page, this.next_page ).subscribe((resp: any) => {
-      console.log(resp) })
-
+     this.router.navigateByUrl('pdftocsv/crop');
+    //console.log(resp)
+  })
     //console.log(this.file)
     // }
     // console.log(this.file, this.page_no, this.double_page, this.next_page)  

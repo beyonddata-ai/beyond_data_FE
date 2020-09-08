@@ -14,7 +14,8 @@ import { ImageCropComponent } from './views/image-crop/image-crop.component'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { VerifyCsvComponent } from './views/verify-csv/verify-csv.component';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { HttpClientModule } from '@angular/common/http';
+import {TableModule} from 'primeng/table';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     ImageCropperModule,
     MatGridListModule,
-    HttpClientModule
+    TableModule
+
     
   ]
 })
