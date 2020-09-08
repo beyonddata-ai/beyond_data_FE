@@ -15,6 +15,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { VerifyCsvComponent } from './views/verify-csv/verify-csv.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {TableModule} from 'primeng/table';
+import {InputTextModule} from 'primeng/inputtext';
+import {ToastModule} from 'primeng/toast';
 
 
 @NgModule({
@@ -36,9 +38,9 @@ import {TableModule} from 'primeng/table';
     MatDividerModule,
     ImageCropperModule,
     MatGridListModule,
-    TableModule
-
-    
+    TableModule,
+    InputTextModule,
+    ToastModule  
   ]
 })
 export class PdfToCsvModule { }

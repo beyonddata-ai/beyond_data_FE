@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectItem } from 'primeng/api';
+import { FilterUtils } from 'primeng/utils';
 
 @Component({
   selector: 'app-verify-csv',
@@ -82,6 +84,79 @@ export class VerifyCsvComponent implements OnInit {
     }
   ]
 
+  data2  = [
+      {
+      "Name": "Alex",
+      "Sex": "M",
+      "Age": 41,
+      "Height": 74,
+      "Weight": 170
+    },
+    {
+      "Name": "Bert",
+      "Sex": "M",
+      "Age": 42,
+      "Height": 68,
+      "Weight": 166
+    },
+    {
+      "Name": "Carl",
+      "Sex": "M",
+      "Age": 32,
+      "Height": 70,
+      "Weight": 155
+    },
+    {
+      "Name": "Dave",
+      "Sex": "M",
+      "Age": 39,
+      "Height": 72,
+      "Weight": 167
+    },
+    {
+      "Name": "Elly",
+      "Sex": "F",
+      "Age": 30,
+      "Height": 66,
+      "Weight": 124
+    },
+    {
+      "Name": "Fran",
+      "Sex": "F",
+      "Age": 33,
+      "Height": 66,
+      "Weight": 115
+    },
+    {
+      "Name": "Gwen",
+      "Sex": "F",
+      "Age": 26,
+      "Height": 64,
+      "Weight": 121
+    },
+    {
+      "Name": "Hank",
+      "Sex": "M",
+      "Age": 30,
+      "Height": 71,
+      "Weight": 158
+    },
+    {
+      "Name": "Ivan",
+      "Sex": "M",
+      "Age": 53,
+      "Height": 72,
+      "Weight": 175
+    },
+    {
+      "Name": "Jake",
+      "Sex": "M",
+      "Age": 32,
+      "Height": 69,
+      "Weight": 143
+    },
+  ]
+
   tableHeader = []
 
   constructor() { }
@@ -89,7 +164,7 @@ export class VerifyCsvComponent implements OnInit {
 
 
   ngOnInit(): void {
-    var keys = Object.keys(this.data[0])
+    var keys = Object.keys(this.data2[0])
     console.log(keys);
     this.tableHeader = keys;
 

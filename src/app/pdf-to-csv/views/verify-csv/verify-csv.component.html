@@ -1,31 +1,71 @@
 <div class="container">
-    <mat-grid-list cols="2" rowHeight="80%">
-        <mat-grid-tile>
-            <p-table [value]="data">
+    <mat-grid-list cols="2" rowHeight="100%">
+        <mat-grid-tile class="table" >
+            <p-table [value]="data2">
                 <ng-template pTemplate="header">
                     <tr>
                         <th *ngFor="let header of tableHeader">{{header}}</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-data>
+                 <ng-template pTemplate="body" let-data2>
                     <tr>
                         <td pEditColumn>
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="data.Month">
+                                    <input pInputText type="text" [(ngModel)]="data2.Name">
                                 </ng-template>
                                 <ng-template pTemplate="output">
-                                    {{data.Month}}
+                                    {{data2.Name}}
                                 </ng-template>
                             </p-cellEditor>
                         </td>
+                        <td pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="data2.Sex" required>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{data2.Sex}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="data2.Age" required>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{data2.Age}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="data2.Height" required>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{data2.Height}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="data2.Weight" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{data2.Weight}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
                     </tr>
-                </ng-template>
+                </ng-template> 
             </p-table>
         </mat-grid-tile>
         <mat-grid-tile><span>Extracted Image</span></mat-grid-tile>
     </mat-grid-list>
     <div style="text-align: center;">
-        <button mat-raised-button>Verify CSV</button>
+        <button mat-raised-button style=" margin-top: 20px; background-color: black; color: white;">Verify CSV</button>
     </div>
 </div>

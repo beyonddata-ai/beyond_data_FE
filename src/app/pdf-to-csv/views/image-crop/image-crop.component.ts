@@ -68,12 +68,12 @@ export class ImageCropComponent implements OnInit {
 onCropped() {
     if(this.image2) {
       this.tableExtractionService.doubleImageCrop(this.image1, this.image2).subscribe((resp:any)=>{
-
+        console.log(resp)
       })
       console.log( "1")
     } else {
       this.tableExtractionService.singleImageCrop(this.image1).subscribe((resp:any)=>{
-        
+        console.log(resp)
       })
       console.log( "2")
     }
