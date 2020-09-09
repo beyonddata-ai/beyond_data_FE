@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { TableExtractionService } from 'src/app/services/table-extraction.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-image-crop',
@@ -49,7 +50,7 @@ export class ImageCropComponent implements OnInit {
   loadImageFailed() {
       console.log('Load failed');
   }
-  constructor(private tableExtractionService: TableExtractionService) { }
+  constructor(private tableExtractionService: TableExtractionService, private router: Router) { }
 
   ngOnInit(): void {
     const base64Images = this.tableExtractionService.base64Images;
@@ -69,11 +70,14 @@ onCropped() {
     if(this.image2) {
       this.tableExtractionService.doubleImageCrop(this.image1, this.image2).subscribe((resp:any)=>{
         console.log(resp)
+        this.router.navigateByUrl('pdftocsv/verifycsv');
       })
       console.log( "1")
     } else {
       this.tableExtractionService.singleImageCrop(this.image1).subscribe((resp:any)=>{
-        console.log(resp)
+        //console.log(resp)
+        this.router.navigateByUrl('pdftocsv/verifycsv');
+
       })
       console.log( "2")
     }

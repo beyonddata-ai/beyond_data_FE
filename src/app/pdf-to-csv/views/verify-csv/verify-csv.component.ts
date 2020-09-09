@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { FilterUtils } from 'primeng/utils';
+import { TableExtractionService } from 'src/app/services/table-extraction.service';
+//const get = require('foo');
 
 @Component({
   selector: 'app-verify-csv',
@@ -9,167 +11,129 @@ import { FilterUtils } from 'primeng/utils';
 })
 export class VerifyCsvComponent implements OnInit {
 
-  data = [
-    {
-      "1958": 340,
-      "1959": 360,
-      "1960": 417,
-      "Month": "JAN"
-    },
-    {
-      "1958": 318,
-      "1959": 342,
-      "1960": 391,
-      "Month": "FEB"
-    },
-    {
-      "1958": 362,
-      "1959": 406,
-      "1960": 419,
-      "Month": "MAR"
-    },
-    {
-      "1958": 348,
-      "1959": 396,
-      "1960": 461,
-      "Month": "APR"
-    },
-    {
-      "1958": 363,
-      "1959": 420,
-      "1960": 472,
-      "Month": "MAY"
-    },
-    {
-      "1958": 435,
-      "1959": 472,
-      "1960": 535,
-      "Month": "JUN"
-    },
-    {
-      "1958": 491,
-      "1959": 548,
-      "1960": 622,
-      "Month": "JUL"
-    },
-    {
-      "1958": 505,
-      "1959": 559,
-      "1960": 606,
-      "Month": "AUG"
-    },
-    {
-      "1958": 404,
-      "1959": 463,
-      "1960": 508,
-      "Month": "SEP"
-    },
-    {
-      "1958": 359,
-      "1959": 407,
-      "1960": 461,
-      "Month": "OCT"
-    },
-    {
-      "1958": 310,
-      "1959": 362,
-      "1960": 390,
-      "Month": "NOV"
-    },
-    {
-      "1958": 337,
-      "1959": 405,
-      "1960": 432,
-      "Month": "DEC"
-    }
+  extractedData1;
+  extractedData2;
+
+  //images of the extractedData1 and extractedData2
+  image1;
+  image2;
+
+  //final preprocessed Datasource of extractedData1 and extractedData2
+  rows = []
+  rows2 = []
+
+
+  extractedData1Array;
+  extractedData2Array;
+  colData1 = [
   ]
 
-  data2  = [
-      {
-      "Name": "Alex",
-      "Sex": "M",
-      "Age": 41,
-      "Height": 74,
-      "Weight": 170
-    },
-    {
-      "Name": "Bert",
-      "Sex": "M",
-      "Age": 42,
-      "Height": 68,
-      "Weight": 166
-    },
-    {
-      "Name": "Carl",
-      "Sex": "M",
-      "Age": 32,
-      "Height": 70,
-      "Weight": 155
-    },
-    {
-      "Name": "Dave",
-      "Sex": "M",
-      "Age": 39,
-      "Height": 72,
-      "Weight": 167
-    },
-    {
-      "Name": "Elly",
-      "Sex": "F",
-      "Age": 30,
-      "Height": 66,
-      "Weight": 124
-    },
-    {
-      "Name": "Fran",
-      "Sex": "F",
-      "Age": 33,
-      "Height": 66,
-      "Weight": 115
-    },
-    {
-      "Name": "Gwen",
-      "Sex": "F",
-      "Age": 26,
-      "Height": 64,
-      "Weight": 121
-    },
-    {
-      "Name": "Hank",
-      "Sex": "M",
-      "Age": 30,
-      "Height": 71,
-      "Weight": 158
-    },
-    {
-      "Name": "Ivan",
-      "Sex": "M",
-      "Age": 53,
-      "Height": 72,
-      "Weight": 175
-    },
-    {
-      "Name": "Jake",
-      "Sex": "M",
-      "Age": 32,
-      "Height": 69,
-      "Weight": 143
-    },
-  ]
+
 
   tableHeader = []
+  tableHeader2 = []
 
-  constructor() { }
+  constructor(private tableExtractionService: TableExtractionService) { }
 
 
 
   ngOnInit(): void {
-    var keys = Object.keys(this.data2[0])
-    console.log(keys);
+    // var keys = Object.keys(this.data2[0])
+    // console.log(keys);
+    // this.tableHeader = keys;
+
+    // for (let dat of this.data) {
+    //   console.log(dat.Month)
+    // }
+
+
+
+    const csv_s = this.tableExtractionService.extractedData;
+    const images = this.tableExtractionService.extractedImagesCropped;
+
+
+    //saving csv data withing component from the service, 
+    //also checking if returned data is single csv or double csv
+    if (csv_s.length == 1) {
+      this.extractedData1 = csv_s[0]
+    } else if (csv_s.length == 2) {
+
+      this.extractedData1 = csv_s[0]
+      this.extractedData2 = csv_s[1]
+
+    }
+
+    if (images.length == 1) {
+      this.image1 = images[0];
+    } else if (images.length == 2) {
+      this.image1 = images[0];
+      this.image2 = images[1];
+    }
+    console.log(this.extractedData1, "1st data")
+    //console.log(this.image1, "1st image")
+    // console.log(this.extractedData2, "2nd data")
+    // console.log(this.image2, "2nd image")
+
+    //keys of data1
+    var keys = Object.keys(this.extractedData1)
     this.tableHeader = keys;
 
-    for(let dat of this.data){
-      console.log(dat.Month)
+    //keys of data2
+    if (csv_s.length == 2) {
+      var keys2 = Object.keys(this.extractedData2)
+      this.tableHeader2 = keys2;
+    }
+
+
+
+    //console.log(this.tableHeader)
+    //console.log(this.tableHeader);
+
+    //creating array of col data of data1
+    this.extractedData1Array = Object.values(this.extractedData1);
+
+    //creating array of col data of data2
+    if (csv_s.length == 2) {
+      this.extractedData2Array = Object.values(this.extractedData2);
+    }
+
+
+    // for(let dat of this.extractedData1Array) {
+    //     this.colData1.push(dat[1]);
+    // }
+    // console.log(this.colData1)
+    // console.log(this.colData1[0]);
+
+    //console.log(get(this.extractedData1, 'a'));
+
+    // for(let arr of this.extractedData1Array) {
+    //     for(let i=0; i<arr.length; arr++) {
+    //       this.rowData[i] = arr[i];
+    //     }     
+    // }
+
+    // console.log(this.rowData);
+
+    //creating final processed Datasource of extractedData1
+    const noRows = this.extractedData1Array[0].length;
+    for (let i = 0; i < noRows; i++) {
+      this.rows[i] = {}
+      keys.forEach((key) => {
+        this.rows[i][key] = this.extractedData1Array[key][i];
+      })
+      //console.log(this.rows);
+    }
+
+    //creating final processed Datasource of extractedData2
+    if (csv_s.length == 2) {
+      const noRows2 = this.extractedData2Array[0].length;
+      for (let i = 0; i < noRows2; i++) {
+        this.rows2[i] = {}
+        keys2.forEach((key2) => {
+          this.rows2[i][key2] = this.extractedData2Array[key2][i];
+        })
+        console.log(this.rows2)
+      }
     }
   }
 

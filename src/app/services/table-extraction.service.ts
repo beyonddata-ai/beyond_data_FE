@@ -14,6 +14,9 @@ export class TableExtractionService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  extractedData = []
+  extractedImagesCropped = []
+
 
   constructor(private http: HttpClient) { }
 
@@ -30,12 +33,32 @@ export class TableExtractionService {
   }
 
   doubleImageCrop(image1, image2) {
-   return this.http.post("http://127.0.0.1:8000/tableExtraction/extractCSV", {image1, image2})
-  }
+   return this.http.post("http://127.0.0.1:8000/tableExtraction/extractCSV", {image1, image2}).pipe(tap((resp: any) => {
+   // console.log(resp.result.csv);
+    for(let csv of resp.result.csv){
+      this.extractedData.push(csv);
+    }
+    console.log(this.extractedData);
+    for(let image of resp.result.images) {
+      this.extractedImagesCropped.push(image);
+    }
+    console.log(this.extractedImagesCropped);
+  })) 
+}
   
   singleImageCrop(image1) {
-   return this.http.post("http://127.0.0.1:8000/tableExtraction/extractCSV", {image1})
+   return this.http.post("http://127.0.0.1:8000/tableExtraction/extractCSV", {image1}).pipe(tap((resp: any) => {
+     // console.log(resp.result.csv);
+      for(let csv of resp.result.csv){
+        this.extractedData.push(csv);
+      }
+      console.log(this.extractedData);
+      
+      for(let image of resp.result.images) {
+        this.extractedImagesCropped.push(image);
+      }
+      console.log(this.extractedImagesCropped);
+   }))
   }
-
 }
 
