@@ -14,6 +14,7 @@ export class ImageCropComponent implements OnInit {
   image_2;
   image2: string;
   image1: string;
+  isLoading = false;
 
   imageChangedEvent: any = '';
   croppedImages: any = []
@@ -67,15 +68,19 @@ export class ImageCropComponent implements OnInit {
   }
   
 onCropped() {
+    this.isLoading = true;
     if(this.image2) {
       this.tableExtractionService.doubleImageCrop(this.image1, this.image2).subscribe((resp:any)=>{
+        this.isLoading = false
         console.log(resp)
         this.router.navigateByUrl('pdftocsv/verifycsv');
       })
       console.log( "1")
     } else {
+      
       this.tableExtractionService.singleImageCrop(this.image1).subscribe((resp:any)=>{
         //console.log(resp)
+        this.isLoading = false
         this.router.navigateByUrl('pdftocsv/verifycsv');
 
       })

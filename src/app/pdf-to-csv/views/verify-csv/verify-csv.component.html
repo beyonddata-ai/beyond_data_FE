@@ -1,131 +1,92 @@
+<!--Table1 and Image1-->
 <div class="container">
     <mat-grid-list cols="2" rowHeight="100%">
         <mat-grid-tile class="table">
-             <div>
-                <p-table [columns]="tableHeader" [value]="rows" [rows]="7" [rowsPerPageOptions]="[10,20,30]" [scrollable]="true" [paginator]="true">
+            <div>
+                <p-table #dt [columns]="tableHeader" [value]="rows"
+                 [scrollable]="true" scrollHeight="600px">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th *ngFor="let header of tableHeader">
+                            <th *ngFor="let header of tableHeader" style="width: 150px; display: inline-block;">
                                 {{header}}
                             </th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-rowdata let-columns="columns">
+                    <ng-template pTemplate="body" let-rowdata let-i="rowIndex" let-columns="columns">
                         <tr>
-                            <td *ngFor="let col of columns" pEditableColumn> 
-                                <p-cellEditor> 
+                            <td *ngFor="let col of columns" pEditableColumn style="width: 150px;">
+                                <p-cellEditor>
                                     <ng-template pTemplate="input">
-                                        <input pInputText type="text" [(ngModel)]="rowdata[col]" required> 
+                                        <input pInputText type="text" style="width: 100px;" [(ngModel)]="rowdata[col]" required>
                                     </ng-template>
                                     <ng-template pTemplate="output">
                                         {{rowdata[col]}}
-                                    </ng-template>  
+                                    </ng-template>
                                 </p-cellEditor>
-                            </td>             
+                            </td>
+                             <td style="text-align:center">
+                                <button mat-raised-button (click)="newRow(i)" color="primary" style="width: 90px;">
+                                    Add row
+                                </button>
+                            </td> 
+                            </tr>
                     </ng-template>
                 </p-table>
+                <br />
+                <!-- <button pButton type="button" icon="pi pi-plus" class="ui-button-info" [label]="'Add'" pAddRow
+                    [table]="dt" [newRow]="newRow()"></button> -->
             </div>
-
-            <!-- <p-table [value]="data2">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th *ngFor="let header of tableHeader">{{header}}</th>
-                    </tr>
-                </ng-template>
-                 <ng-template pTemplate="body" let-data2>
-                    <tr>
-                        <td pEditableColumn>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="data2.Name" required> 
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{data2.Name}}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td pEditableColumn>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="data2.Sex" required>
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{data2.Sex}}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td pEditableColumn>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="data2.Age" required>
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{data2.Age}}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td pEditableColumn>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="data2.Height" required>
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{data2.Height}}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="data2.Weight" required>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{data2.Weight}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    </tr>
-                </ng-template> 
-            </p-table> -->
         </mat-grid-tile>
         <mat-grid-tile>
             <img src={{image1}} style="width: 700px; height: 700px;">
         </mat-grid-tile>
     </mat-grid-list>
 </div>
+
+<!--If Table2 and Image2-->
 <div *ngIf="image2" class="container2">
     <mat-grid-list cols="2" rowHeight="100%">
         <mat-grid-tile>
             <div>
-                <p-table [columns]="tableHeader2" [value]="rows2" [rows]="7" [rowsPerPageOptions]="[10,20,30]" [scrollable]="true" [paginator]="true">
+                <p-table #dt2 [columns]="tableHeader2" [value]="rows2"
+                    [scrollable]="true" scrollHeight="600px">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th *ngFor="let header of tableHeader2">
+                            <th *ngFor="let header of tableHeader2" style="width: 150px; display: inline-block;">
                                 {{header}}
                             </th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-rowdata let-columns="columns">
+                    <ng-template pTemplate="body" let-rowdata let-i="rowIndex" let-columns="columns">
                         <tr>
-                            <td *ngFor="let col of columns" pEditableColumn> 
-                                <p-cellEditor> 
+                            <td *ngFor="let col of columns" style="width: 150px;" pEditableColumn>
+                                <p-cellEditor>
                                     <ng-template pTemplate="input">
-                                        <input pInputText type="text" [(ngModel)]="rowdata[col]" required> 
+                                        <input pInputText style="width: 100px;" type="text" [(ngModel)]="rowdata[col]" required>
                                     </ng-template>
                                     <ng-template pTemplate="output">
                                         {{rowdata[col]}}
-                                    </ng-template>  
+                                    </ng-template>
                                 </p-cellEditor>
-                            </td>             
+                            </td>
+                            <td style="text-align:center">
+                                <button mat-raised-button (click)="newRow2(i)" color="primary" style="width: 90px;">
+                                    Add row
+                                </button>
+                            </td>
+                            </tr>
                     </ng-template>
                 </p-table>
+                <br />
+                <!-- <button pButton type="button" icon="pi pi-plus" class="ui-button-info" [label]="'Add'" pAddRow2
+                    [table]="dt2" [newRow2]="newRow2()"></button> -->
             </div>
         </mat-grid-tile>
         <mat-grid-tile>
             <img src={{image2}} style="width: 700px; height: 700px;">
         </mat-grid-tile>
-    </mat-grid-list> -->
+    </mat-grid-list>
 </div>
-<div style="text-align: center; margin: 5px;">
-    <button mat-raised-button style=" margin-top: 20px; background-color: black; color: white;">Verify CSV</button>
+<div style="text-align: center; margin: 20px;" >
+    <button mat-raised-button (click)="verifyCsv()" style=" margin-top: 20px; background-color: black; color: white;">Verify CSV</button>
 </div>

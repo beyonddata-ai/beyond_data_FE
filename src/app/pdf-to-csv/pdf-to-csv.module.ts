@@ -17,6 +17,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
+import {ButtonModule} from 'primeng/button';
+import { MatSelectModule } from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 
 @NgModule({
@@ -24,7 +28,7 @@ import {ToastModule} from 'primeng/toast';
     PdfToCsvComponent,
     FileInputComponent,
     ImageCropComponent,
-    VerifyCsvComponent
+    VerifyCsvComponent,
   ],
 
   imports: [
@@ -40,7 +44,12 @@ import {ToastModule} from 'primeng/toast';
     MatGridListModule,
     TableModule,
     InputTextModule,
-    ToastModule  
+    ToastModule,
+    ButtonModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    ProgressBarModule
+    
   ]
 })
 export class PdfToCsvModule { }

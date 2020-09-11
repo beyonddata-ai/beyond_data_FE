@@ -7,28 +7,30 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TableExtractionService {
+  //returned image/images on file upload
   base64Images = [];
+
+  //returned extractedData/data's and cropped image/images, after Images are Cropped in imagecrop component
+  extractedData = []
+  extractedImagesCropped = []
+  isNextChecked;
+
+  //url for uploadreport API
   fileUploadUrl = 'http://127.0.0.1:8000/tableExtraction/uploadReport';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  extractedData = []
-  extractedImagesCropped = []
-
-
   constructor(private http: HttpClient) { }
 
   fileUpload(file, page_no, double_page, next_page): Observable<any> {
-    //const url = `${this.fileUploadUrl}?file=${file}&page_no=${pageNo}&double_page=${doublePage}&next_page=${nextPage}`;
+    this.isNextChecked = next_page;
     return this.http.post(this.fileUploadUrl, {file, page_no, double_page, next_page})
     .pipe(tap(resp=>{
       for(let res of resp.result) {
-        this.base64Images.push(res);
-        //console.log(res);
-      }
-      //console.log(this.base64Images)
+        this.base64Images.push(res); 
+      } 
     }))
   }
 
