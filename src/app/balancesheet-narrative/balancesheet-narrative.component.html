@@ -1,0 +1,19 @@
+<mat-card>   
+   <hr>
+          <div *ngIf="narrativeToDisplay">
+            <h1>Narrative</h1>
+            <hr>
+            <h2>{{this.selectedSection}}</h2>
+            <hr>
+            <span>{{narrativeToDisplay}}</span>
+        </div>
+        <div *ngIf="assetsNarrative">
+            <h1>Narrative</h1>
+            <hr>
+            <h2>ASSETS</h2>
+            <span>{{assetsNarrative}}</span>
+            <hr>
+            <h2>Liabilities</h2>
+            <span>{{liabilitiesNarrative}}</span>
+        </div>
+</mat-card>

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PdfToCsvRoutingModule } from './pdf-to-csv-routing.module';
 import { PdfToCsvComponent } from './pdf-to-csv.component';
 import { FileInputComponent } from './views/file-input/file-input.component';

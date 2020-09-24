@@ -1,0 +1,13 @@
+<div class="mapHeader">
+    <!-- <ng-select [items]="flyTo" class="ngSelect" bindLabel="location" bindValue="location"
+        placeholder="Search for location" (change)="flyToLocation($event)">
+</ng-select> -->
+<mat-form-field appearance="outline">
+    <mat-label>Search for a company location</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let fly of flyTo" (click)="flyToLocation(fly.longitude, fly.latitude)" value="{{fly.location}}">{{fly.location}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+</div>
+<div class="map" id="map" class="match-parent"></div>

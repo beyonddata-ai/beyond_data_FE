@@ -1,40 +1,112 @@
+
 <mat-card>
     <mat-card-content>
         <div class="container">
             <mat-form-field>
                 <mat-label>Select Sector</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let sector of data.sector" (click)="selectCompany(sector)" value="{{sector}}">
-                        {{sector.name}}</mat-option>
+                <mat-select [(value)]="selectedSector">
+                    <mat-option *ngFor="let sect of sectors" value="{{sect}}" (click)="getCompany()">
+                        {{sect}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Select Company</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let data of selectedSectorCompanies" value="data"
-                        (click)="selected_Company(data)">{{data}}</mat-option>
+                <mat-select [(value)]="selectedCompany">
+                    <mat-option *ngFor="let company of companies" (click)="getNarrativeType()" value="{{company}}">
+                        {{company}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Select Narrative Type</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let narrative of data.narrativeType" (click)="selectNarrativeType(narrative)"
-                        value="narrative">{{narrative}}</mat-option>
+                <mat-select [(value)]="selectedNarrativeType">
+                    <mat-option *ngFor="let narrative of narrativeTypes" value="{{narrative}}" (click)="getSection()">
+                        {{narrative}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Select Narrative Section</mat-label>
-                <mat-select>
-
-                    <mat-option *ngFor="let section of sections" value="section" (click)="selectSection(section)">
-                        {{section}}</mat-option>
+                <mat-select [(value)]="selectedSection">
+                    <mat-option *ngFor="let section of sections" (click)="getReferencingYear()" value="{{section}}">
+                        {{section}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
-            <button mat-raised-button color="primary" (click)="Results()">Search</button>
-            <div style="display: block; margin: 40px;">
-                <span>{{searchResults}}</span>
-            </div>
+            <mat-form-field>
+                <mat-label>Select Referencing Year</mat-label>
+                <mat-select [(value)]="selectedReferencingYear">
+                    <mat-option *ngFor="let refYear of referencingYears" (click)="getReferencedYear()" value="{{refYear}}">
+                        {{refYear}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Select Referenced Year</mat-label>
+                <mat-select [(value)]="selectedReferencedYear">
+                    <mat-option *ngFor="let refYear of referencedYears" value="{{refYear}}">
+                        {{refYear}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="getResults()">Search</button>
         </div>
     </mat-card-content>
-
 </mat-card>
+
+<div *ngIf="narrative" class="results">
+    <mat-card>
+        <mat-card-content>
+            <h1>Narrative</h1>
+            <hr style="margin-top: 10px;">
+            <h2>SECTION:  {{selectedSection}}</h2>
+            <span>{{narrative}}</span>
+            <hr style="margin-top: 30px;">
+            <div *ngIf="narrativeData" style="margin-top: 25px;">
+                <p-table [value]="narrativeData">
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                           <td>{{rowData[0]}}</td>
+                           <td *ngFor="let vals of rowData[1]">
+                               {{vals}}
+                           </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="depNarrativeCustomers" class="results">
+    <mat-card>
+        <mat-card-content>
+            <h1>Narrative</h1>
+            <hr style="margin-top: 10px;">
+            <h2 style="margin-top: 10px;">SECTION:  {{selectedSection}}</h2>
+            <hr style="margin-top: 10px;">
+            <h2 style="margin-top: 20px;">Customers</h2>
+            <div *ngFor="let header of depNarrativeCustomersKeys">
+                <h2 style="margin-top: 10px;">{{header}}</h2>
+                <span>{{depNarrativeCustomers[header]}}</span>
+            </div>
+            <hr style="margin-top: 10px;">
+            <h2 style="margin-top: 20px;">Financial Institutions</h2>
+            <div *ngFor="let header of depNarrativeFinInstKeys">
+                <h2 style="margin-top: 10px;">{{header}}</h2>
+                <span>{{depNarrativeFinInst[header]}}</span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="errorMessage" style="padding-left: 0px;">
+    <mat-card style="text-align: center; ">
+        <span style="font-size: xx-large; font-weight: 400; color: red;">{{errorMessage}}</span>
+    </mat-card>   
+ </div>
+
+
+
+
+

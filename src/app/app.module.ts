@@ -12,7 +12,14 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
+import {TableModule} from 'primeng/table';
+import { ChartsComponent } from './charts/charts.component';
+import { NarrativeComponent } from './narrative/narrative.component';
+import { BalancesheetNarrativeComponent } from './balancesheet-narrative/balancesheet-narrative.component';
+import { MapComponent } from './map/map.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { DataMapComponent } from './data-map/data-map.component';
+import { DataMapPakistanComponent } from './data-map-pakistan/data-map-pakistan.component';
 
 
 @NgModule({
@@ -20,6 +27,12 @@ import { MatButtonModule } from '@angular/material/button';
     AppComponent,
     HeaderComponent,
     FilterInputsComponent,
+    ChartsComponent,
+    NarrativeComponent,
+    BalancesheetNarrativeComponent,
+    MapComponent,
+    DataMapComponent,
+    DataMapPakistanComponent,
    
   ],
   
@@ -33,7 +46,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    TableModule,
+    NgSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
